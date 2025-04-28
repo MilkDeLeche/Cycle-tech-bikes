@@ -10,13 +10,10 @@ export function Logo() {
 
   return (
     <a href="/" className="block">
-      <Image
+      <img
         src={logoPath}
         alt="Velo Noir Logo"
-        width={120}
-        height={40}
         className="h-8 w-auto"
-        priority
       />
     </a>
   )
