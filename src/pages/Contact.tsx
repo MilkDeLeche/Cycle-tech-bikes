@@ -92,13 +92,7 @@ const Contact: React.FC = () => {
               <div>
                 <h2 className="text-2xl font-display font-bold mb-6">Envíanos un Mensaje</h2>
                 
-                {submitSuccess && (
-                  <div className="bg-green-50 text-green-800 p-4 rounded-md mb-6">
-                    ¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.
-                  </div>
-                )}
-                
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-noir-700 mb-1">Nombre</label>
                     <input
@@ -151,14 +145,15 @@ const Contact: React.FC = () => {
                     ></textarea>
                   </div>
                   
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-noir-900 text-white py-3 px-6 rounded-md hover:bg-noir-800 transition-colors disabled:opacity-50"
+                  <a
+                    href={`https://wa.me/1234567890?text=Hola, mi nombre es ${encodeURIComponent(formData.name)}. ${encodeURIComponent(formData.message)} (Correo: ${encodeURIComponent(formData.email)}, Asunto: ${encodeURIComponent(formData.subject)})`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-noir-900 text-white py-3 px-6 rounded-md hover:bg-noir-800 transition-colors text-center block"
                   >
-                    {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
-                  </button>
-                </form>
+                    Enviar Mensaje por WhatsApp
+                  </a>
+                </div>
               </div>
             </div>
 

@@ -26,8 +26,11 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
+          'react-vendor': ['react-router-dom', 'react-icons'],
         },
-      },
+      }
     },
+    target: 'esnext',
+    minify: 'terser',
   },
 }));
