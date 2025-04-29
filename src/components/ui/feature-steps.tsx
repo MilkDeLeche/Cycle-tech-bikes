@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 
@@ -16,7 +16,6 @@ interface FeatureStepsProps {
   className?: string
   title?: string
   autoPlayInterval?: number
-  imageHeight?: string
 }
 
 export function FeatureSteps({
@@ -24,7 +23,6 @@ export function FeatureSteps({
   className,
   title = "How to get Started",
   autoPlayInterval = 3000,
-  imageHeight = "h-[400px]",
 }: FeatureStepsProps) {
   const [currentFeature, setCurrentFeature] = useState(0)
   const [progress, setProgress] = useState(0)
@@ -49,7 +47,7 @@ export function FeatureSteps({
           {title}
         </h2>
 
-        <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="order-2 md:order-1 space-y-8">
             {features.map((feature, index) => (
               <motion.div
@@ -98,19 +96,18 @@ export function FeatureSteps({
                     <motion.div
                       key={index}
                       className="absolute inset-0 rounded-lg overflow-hidden"
-                      initial={{ y: 100, opacity: 0, rotateX: -20 }}
-                      animate={{ y: 0, opacity: 1, rotateX: 0 }}
-                      exit={{ y: -100, opacity: 0, rotateX: 20 }}
-                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                      initial={{ opacity: 0, scale: 1.1 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      transition={{ duration: 0.5 }}
                     >
                       <img
                         src={feature.image}
-                        alt={feature.step}
-                        className="w-full h-full object-cover transition-transform transform"
+                        alt={feature.title || feature.step}
+                        className="w-full h-full object-cover"
                       />
-                      <div className="absolute bottom-0 left-0 right-0 h-2/3 bg-gradient-to-t from-noir-900 via-noir-900/50 to-transparent" />
                     </motion.div>
-                  ),
+                  )
               )}
             </AnimatePresence>
           </div>

@@ -1,11 +1,9 @@
 [build]
-  command = "npm install -g typescript && npm install && npm run build"
+  command = "npm install && npm run build"
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "20.11.1"
-  NPM_FLAGS = "--no-audit --no-optional"
-  NODE_ENV = "production"
+  NODE_VERSION = "18"
 
 [[redirects]]
   from = "/*"

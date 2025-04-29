@@ -1,4 +1,4 @@
-import { Navigation } from "@/components/Navigation"
+import Navigation from "@/components/Navigation"
 import { ThemeSwitcher } from "@/components/ThemeSwitcher"
 
 export default function Home() {

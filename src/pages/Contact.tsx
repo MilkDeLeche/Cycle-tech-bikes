@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navigation from '../components/Navigation';
+import { Navigation } from '../components/Navigation';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -9,39 +9,12 @@ const Contact: React.FC = () => {
     message: ''
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [submitError, setSubmitError] = useState('');
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitError('');
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitSuccess(true);
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setSubmitSuccess(false);
-      }, 5000);
-    }, 1500);
   };
 
   return (
@@ -92,7 +65,7 @@ const Contact: React.FC = () => {
               <div>
                 <h2 className="text-2xl font-display font-bold mb-6">Envíanos un Mensaje</h2>
                 
-                <div className="space-y-6">
+                <form className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-noir-700 mb-1">Nombre</label>
                     <input
@@ -102,12 +75,12 @@ const Contact: React.FC = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 border border-noir-300 rounded-md focus:outline-none focus:ring-2 focus:ring-noir-500"
+                      className="w-full px-4 py-2 border border-noir-300 rounded-lg focus:ring-2 focus:ring-noir-500 focus:border-transparent"
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-noir-700 mb-1">Correo Electrónico</label>
+                    <label htmlFor="email" className="block text-sm font-medium text-noir-700 mb-1">Email</label>
                     <input
                       type="email"
                       id="email"
@@ -115,7 +88,7 @@ const Contact: React.FC = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 border border-noir-300 rounded-md focus:outline-none focus:ring-2 focus:ring-noir-500"
+                      className="w-full px-4 py-2 border border-noir-300 rounded-lg focus:ring-2 focus:ring-noir-500 focus:border-transparent"
                     />
                   </div>
                   
@@ -128,7 +101,7 @@ const Contact: React.FC = () => {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 border border-noir-300 rounded-md focus:outline-none focus:ring-2 focus:ring-noir-500"
+                      className="w-full px-4 py-2 border border-noir-300 rounded-lg focus:ring-2 focus:ring-noir-500 focus:border-transparent"
                     />
                   </div>
                   
@@ -141,19 +114,17 @@ const Contact: React.FC = () => {
                       onChange={handleChange}
                       required
                       rows={4}
-                      className="w-full px-4 py-2 border border-noir-300 rounded-md focus:outline-none focus:ring-2 focus:ring-noir-500"
-                    ></textarea>
+                      className="w-full px-4 py-2 border border-noir-300 rounded-lg focus:ring-2 focus:ring-noir-500 focus:border-transparent"
+                    />
                   </div>
                   
-                  <a
-                    href={`https://wa.me/1234567890?text=Hola, mi nombre es ${encodeURIComponent(formData.name)}. ${encodeURIComponent(formData.message)} (Correo: ${encodeURIComponent(formData.email)}, Asunto: ${encodeURIComponent(formData.subject)})`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full bg-noir-900 text-white py-3 px-6 rounded-md hover:bg-noir-800 transition-colors text-center block"
+                  <button
+                    type="submit"
+                    className="w-full bg-noir-900 text-white py-3 px-6 rounded-lg hover:bg-noir-800 focus:outline-none focus:ring-2 focus:ring-noir-500 focus:ring-offset-2"
                   >
-                    Enviar Mensaje por WhatsApp
-                  </a>
-                </div>
+                    Enviar Mensaje
+                  </button>
+                </form>
               </div>
             </div>
 
