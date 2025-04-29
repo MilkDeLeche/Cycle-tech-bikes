@@ -40,7 +40,7 @@ const Blog: React.FC = () => {
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 text-center">Blog</h1>
           <p className="text-noir-600 mb-12 text-center max-w-2xl mx-auto">
-            Descubre las últimas novedades del mundo del ciclismo, consejos expertos, rutas locales y eventos comunitarios. Mantente al día con nuestra comunidad ciclista.
+            Explora nuestros últimos artículos, guías e historias del mundo del ciclismo.
           </p>
           
           {/* Featured Article */}

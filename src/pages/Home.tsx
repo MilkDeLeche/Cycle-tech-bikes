@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       <Navigation />
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8 pt-24">
         <div className="max-w-2xl mx-auto text-center">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Welcome to CYCLE-TECH BIKES

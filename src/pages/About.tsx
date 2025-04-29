@@ -1,42 +1,8 @@
 import React from 'react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
-import { useInView } from 'react-intersection-observer';
 
 const About: React.FC = () => {
-  // Add smooth scrolling to the page
-  React.useEffect(() => {
-    document.documentElement.style.scrollBehavior = 'smooth';
-    return () => {
-      document.documentElement.style.scrollBehavior = 'auto';
-    };
-  }, []);
-
-  const [heroRef, heroInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  const [missionRef, missionInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  const [valuesRef, valuesInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  const [teamRef, teamInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  const [ctaRef, ctaInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
   const teamMembers = [
     {
       name: "Alex Chen",
@@ -86,12 +52,7 @@ const About: React.FC = () => {
       <Navigation />
       <main className="pt-24">
         {/* Hero Section */}
-        <section 
-          ref={heroRef}
-          className={`relative h-[60vh] min-h-[400px] bg-noir-900 transition-all duration-1000 ${
-            heroInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
+        <section className="relative h-[60vh] min-h-[400px] bg-noir-900">
           <div className="absolute inset-0 bg-[url('/images/plazaexodo.jpg')] bg-cover bg-center opacity-50"></div>
           <div className="relative container mx-auto h-full flex items-center">
             <div className="max-w-2xl text-white">
@@ -104,12 +65,7 @@ const About: React.FC = () => {
         </section>
 
         {/* Mission Statement */}
-        <section 
-          ref={missionRef}
-          className={`py-20 bg-white transition-all duration-1000 ${
-            missionInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
+        <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">Nuestra Misión</h2>
@@ -125,12 +81,7 @@ const About: React.FC = () => {
         </section>
 
         {/* Values */}
-        <section 
-          ref={valuesRef}
-          className={`py-20 bg-white transition-all duration-1000 ${
-            valuesInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
+        <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-center mb-16">Nuestros Valores</h2>
             <div className="space-y-24">
@@ -139,9 +90,7 @@ const About: React.FC = () => {
                   key={index} 
                   className={`flex flex-col ${
                     index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                  } items-center gap-8 md:gap-16 transition-all duration-1000 ${
-                    valuesInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                  }`}
+                  } items-center gap-8 md:gap-16`}
                 >
                   <div className="w-full md:w-1/2">
                     <div className="relative aspect-[4/3] overflow-hidden">
@@ -163,29 +112,22 @@ const About: React.FC = () => {
         </section>
 
         {/* Team Section */}
-        <section 
-          ref={teamRef}
-          className={`py-20 transition-all duration-1000 ${
-            teamInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
+        <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-center mb-16">Nuestro Equipo</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
               {teamMembers.map((member, index) => (
-                <div 
-                  key={index} 
-                  className={`text-center transition-all duration-1000 ${
-                    teamInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                  }`}
-                  style={{ transitionDelay: `${index * 200}ms` }}
-                >
-                  <div className="relative w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden bg-noir-100 flex items-center justify-center">
-                    <span className="text-noir-400 text-lg">Imagen Próximamente</span>
+                <div key={index} className="text-center">
+                  <div className="relative w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden">
+                    <img 
+                      src={member.image} 
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  <h3 className="text-xl font-bold mb-2 text-noir-400">{member.name}</h3>
-                  <p className="text-noir-400 mb-4">{member.role}</p>
-                  <p className="text-noir-400">{member.bio}</p>
+                  <h3 className="text-xl font-bold mb-2">{member.name}</h3>
+                  <p className="text-noir-500 mb-4">{member.role}</p>
+                  <p className="text-noir-600">{member.bio}</p>
                 </div>
               ))}
             </div>
@@ -193,20 +135,15 @@ const About: React.FC = () => {
         </section>
 
         {/* CTA Section */}
-        <section 
-          ref={ctaRef}
-          className={`py-20 bg-noir-900 text-white transition-all duration-1000 ${
-            ctaInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
+        <section className="py-20 bg-noir-900 text-white">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">Agenda con Nuestros Técnicos</h2>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">Únete a Nuestro Viaje</h2>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Nuestros técnicos certificados están listos para ayudarte con el mantenimiento y reparación de tu bicicleta. Agenda una cita o explora nuestros productos en la galería.
+              Experimenta la diferencia de una bicicleta Cycle-Tech. Visita nuestro showroom o contáctanos para saber más.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/gallery" className="btn-primary bg-white text-noir-900 hover:bg-noir-100">Ver Galería</a>
-              <a href="/contact" className="btn-outline text-white border-white hover:bg-white hover:text-noir-900">Agendar Cita</a>
+              <a href="#" className="btn-primary bg-white text-noir-900 hover:bg-noir-100">Visitar Showroom</a>
+              <a href="#" className="btn-outline text-white border-white hover:bg-white hover:text-noir-900">Contáctanos</a>
             </div>
           </div>
         </section>
