@@ -81,8 +81,11 @@ const Gallery: React.FC = () => {
                   <div className="relative overflow-hidden bg-noir-50 aspect-square mb-4">
                     <img 
                       src={post.media_url} 
-                      alt={post.caption || 'Publicación de Instagram'} 
+                      alt={post.caption || 'Publicación de Instagram de Matamoros Cycling Shop'} 
                       className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                      width="600"
+                      height="600"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-noir-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>

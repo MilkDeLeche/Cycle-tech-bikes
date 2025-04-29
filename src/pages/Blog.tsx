@@ -48,8 +48,11 @@ const Blog: React.FC = () => {
             <div className="relative h-[60vh] min-h-[400px] rounded-lg overflow-hidden mb-8">
               <img 
                 src="/images/4.png" 
-                alt="Artículo destacado" 
+                alt="Grupo de ciclistas en comunidad" 
                 className="w-full h-full object-cover"
+                loading="lazy"
+                width="1200"
+                height="800"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-noir-900/80 to-transparent"></div>
               <div className="absolute bottom-0 left-0 p-8 text-white">
@@ -80,7 +83,7 @@ const Blog: React.FC = () => {
           {/* Facebook Link Button */}
           <div id="facebook-section" className="text-center">
             <a 
-              href="https://www.facebook.com/your-page" 
+              href="https://www.facebook.com/people/Matamoros-Cycling-Shop/100061266284180/" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="inline-block bg-[#1877F2] text-white px-8 py-4 text-lg font-medium rounded-md hover:bg-[#0d6efd] transition-colors"

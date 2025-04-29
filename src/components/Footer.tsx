@@ -72,7 +72,7 @@ const Footer: React.FC = () => {
             <h3 className="text-lg font-display font-bold mb-4">Síguenos</h3>
             <div className="flex space-x-4 justify-center md:justify-start">
               <a 
-                href="https://instagram.com" 
+                href="https://www.instagram.com/matamoros_cyclingshop/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="text-noir-500 hover:text-[#E1306C] transition-colors"
@@ -80,7 +80,7 @@ const Footer: React.FC = () => {
                 <Instagram className="w-6 h-6" />
               </a>
               <a 
-                href="https://facebook.com" 
+                href="https://www.facebook.com/people/Matamoros-Cycling-Shop/100061266284180/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="text-noir-500 hover:text-[#1877F2] transition-colors"
