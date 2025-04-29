@@ -1,26 +1,27 @@
 import React from 'react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
 
 const About: React.FC = () => {
   const teamMembers = [
     {
-      name: "Alex Chen",
-      role: "Fundador y Diseñador Principal",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-      bio: "Con más de 15 años de experiencia en diseño de bicicletas, Alex aporta pasión e innovación a cada proyecto."
+      name: "[Nombre del Técnico]",
+      role: "Técnico Especialista",
+      image: "/images/placeholder.jpg",
+      bio: "Especialista en mantenimiento y reparación de bicicletas de montaña y ruta."
     },
     {
-      name: "Sarah Martinez",
-      role: "Directora Técnica",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-      bio: "La formación en ingeniería de Sarah garantiza que nuestras bicicletas cumplan con los más altos estándares de rendimiento y seguridad."
+      name: "[Nombre del Técnico]",
+      role: "Técnico Especialista",
+      image: "/images/placeholder.jpg",
+      bio: "Experto en ajustes de suspensión y sistemas de transmisión."
     },
     {
-      name: "James Wilson",
-      role: "Maestro Artesano",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-      bio: "James aporta técnicas de artesanía tradicional a nuestro proceso de fabricación moderno."
+      name: "[Nombre del Técnico]",
+      role: "Técnico Especialista",
+      image: "/images/placeholder.jpg",
+      bio: "Especialista en personalización y optimización de bicicletas."
     }
   ];
 
@@ -137,13 +138,23 @@ const About: React.FC = () => {
         {/* CTA Section */}
         <section className="py-20 bg-noir-900 text-white">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">Únete a Nuestro Viaje</h2>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">Nuestros Técnicos Expertos</h2>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Experimenta la diferencia de una bicicleta Cycle-Tech. Visita nuestro showroom o contáctanos para saber más.
+              Nuestro equipo de técnicos certificados está listo para ayudarte con cualquier necesidad de mantenimiento o reparación de tu bicicleta. Con años de experiencia y las mejores herramientas, garantizamos un servicio de calidad.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="#" className="btn-primary bg-white text-noir-900 hover:bg-noir-100">Visitar Showroom</a>
-              <a href="#" className="btn-outline text-white border-white hover:bg-white hover:text-noir-900">Contáctanos</a>
+              <Link 
+                to="/gallery" 
+                className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-noir-900 bg-white hover:bg-noir-100 transition-colors"
+              >
+                Ver Galería
+              </Link>
+              <Link 
+                to="/contact" 
+                className="inline-flex items-center justify-center px-8 py-3 border border-white text-base font-medium rounded-md text-white hover:bg-white hover:text-noir-900 transition-colors"
+              >
+                Agendar Cita
+              </Link>
             </div>
           </div>
         </section>

@@ -4,6 +4,7 @@ import Hero from '../components/Hero';
 import FeaturedBikes from '../components/FeaturedBikes';
 import AboutSection from '../components/AboutSection';
 import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
 
 const Index: React.FC = () => {
   return (

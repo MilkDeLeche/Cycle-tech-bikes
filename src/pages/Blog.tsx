@@ -9,19 +9,19 @@ const Blog: React.FC = () => {
       step: 'Paso 1', 
       title: 'Aprende lo Básico',
       content: 'Comienza tu viaje en bicicleta aprendiendo los conceptos básicos de mantenimiento y técnicas de conducción.', 
-      image: 'https://images.unsplash.com/photo-1541787457429-b1766a4766b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80' 
+      image: '/images/1.jpg' 
     },
     { 
       step: 'Paso 2',
       title: 'Profundiza',
       content: 'Profundiza en técnicas avanzadas de ciclismo y personalización de bicicletas para tus necesidades específicas.',
-      image: 'https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?ixlib=rb-4.0.3&auto=format&fit=crop&w=2068&q=80'
+      image: '/images/5.png'
     },
     { 
       step: 'Paso 3',
       title: 'Únete a la Comunidad',
       content: 'Conéctate con otros ciclistas, únete a paseos en grupo y forma parte de nuestra creciente comunidad ciclista.',
-      image: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'
+      image: '/images/expertguidance.jpg'
     },
   ];
 
@@ -47,7 +47,7 @@ const Blog: React.FC = () => {
           <div className="mb-16">
             <div className="relative h-[60vh] min-h-[400px] rounded-lg overflow-hidden mb-8">
               <img 
-                src="https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                src="/images/4.png" 
                 alt="Artículo destacado" 
                 className="w-full h-full object-cover"
               />

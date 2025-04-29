@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Search, ShoppingCart } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const Navigation: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,30 +19,21 @@ const Navigation: React.FC = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-sm uppercase tracking-wider hover:text-noir-500">Tienda</a>
+            <a href="/" className="text-sm uppercase tracking-wider hover:text-noir-500">Inicio</a>
             <a href="/gallery" className="text-sm uppercase tracking-wider hover:text-noir-500">Galería</a>
             <a href="/about" className="text-sm uppercase tracking-wider hover:text-noir-500">Nosotros</a>
             <a href="/blog" className="text-sm uppercase tracking-wider hover:text-noir-500">Blog</a>
             <a href="/contact" className="text-sm uppercase tracking-wider hover:text-noir-500">Contacto</a>
           </nav>
 
-          {/* Icons */}
-          <div className="flex items-center space-x-4">
-            <button className="p-1 hover:text-noir-500" aria-label="Search">
-              <Search size={20} />
-            </button>
-            <button className="p-1 hover:text-noir-500 relative" aria-label="Cart">
-              <ShoppingCart size={20} />
-              <span className="absolute -top-1 -right-1 bg-noir-900 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">0</span>
-            </button>
-            <button 
-              className="p-1 hover:text-noir-500 md:hidden" 
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Menu"
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+          {/* Mobile Menu Button */}
+          <button 
+            className="p-1 hover:text-noir-500 md:hidden" 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Menu"
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
       </div>
 
@@ -51,7 +42,7 @@ const Navigation: React.FC = () => {
         <div className="md:hidden bg-white absolute w-full border-b border-noir-100 animate-fade-in">
           <nav className="container mx-auto py-6">
             <div className="flex flex-col space-y-4">
-              <a href="#" className="text-sm uppercase tracking-wider hover:text-noir-500">Tienda</a>
+              <a href="/" className="text-sm uppercase tracking-wider hover:text-noir-500">Inicio</a>
               <a href="/gallery" className="text-sm uppercase tracking-wider hover:text-noir-500">Galería</a>
               <a href="/about" className="text-sm uppercase tracking-wider hover:text-noir-500">Nosotros</a>
               <a href="/blog" className="text-sm uppercase tracking-wider hover:text-noir-500">Blog</a>
