@@ -1,9 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 
 const About: React.FC = () => {
+  const [isVisible, setIsVisible] = useState<boolean[]>([]);
+
+  useEffect(() => {
+    // Add smooth scrolling behavior to the page
+    document.documentElement.style.scrollBehavior = 'smooth';
+
+    // Initialize visibility state for each section
+    setIsVisible(new Array(values.length + teamMembers.length + 2).fill(false));
+
+    // Set up intersection observer for scroll animations
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.getAttribute('data-index') || '0');
+            setIsVisible(prev => {
+              const newState = [...prev];
+              newState[index] = true;
+              return newState;
+            });
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    // Observe all sections
+    document.querySelectorAll('[data-section]').forEach((section, index) => {
+      section.setAttribute('data-index', index.toString());
+      observer.observe(section);
+    });
+
+    return () => {
+      document.documentElement.style.scrollBehavior = 'auto';
+      observer.disconnect();
+    };
+  }, []);
+
   const teamMembers = [
     {
       name: "[Nombre del Técnico]",
@@ -53,7 +91,12 @@ const About: React.FC = () => {
       <Navigation />
       <main className="pt-24">
         {/* Hero Section */}
-        <section className="relative h-[60vh] min-h-[400px] bg-noir-900">
+        <section 
+          data-section="hero"
+          className={`relative h-[60vh] min-h-[400px] bg-noir-900 transition-opacity duration-1000 ${
+            isVisible[0] ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
           <div className="absolute inset-0 bg-[url('/images/plazaexodo.jpg')] bg-cover bg-center opacity-50"></div>
           <div className="relative container mx-auto h-full flex items-center">
             <div className="max-w-2xl text-white">
@@ -66,7 +109,12 @@ const About: React.FC = () => {
         </section>
 
         {/* Mission Statement */}
-        <section className="py-20 bg-white">
+        <section 
+          data-section="mission"
+          className={`py-20 bg-white transition-all duration-1000 ${
+            isVisible[1] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}
+        >
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">Nuestra Misión</h2>
@@ -88,17 +136,20 @@ const About: React.FC = () => {
             <div className="space-y-24">
               {values.map((value, index) => (
                 <div 
-                  key={index} 
+                  key={index}
+                  data-section={`value-${index}`}
                   className={`flex flex-col ${
                     index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                  } items-center gap-8 md:gap-16`}
+                  } items-center gap-8 md:gap-16 transition-all duration-1000 ${
+                    isVisible[index + 2] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                  }`}
                 >
                   <div className="w-full md:w-1/2">
-                    <div className="relative aspect-[4/3] overflow-hidden">
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
                       <img 
                         src={value.image} 
                         alt={value.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                       />
                     </div>
                   </div>
@@ -118,12 +169,18 @@ const About: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-display font-bold text-center mb-16">Nuestro Equipo</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
               {teamMembers.map((member, index) => (
-                <div key={index} className="text-center">
+                <div 
+                  key={index}
+                  data-section={`team-${index}`}
+                  className={`text-center transition-all duration-1000 ${
+                    isVisible[index + values.length + 2] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                  }`}
+                >
                   <div className="relative w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden">
                     <img 
                       src={member.image} 
                       alt={member.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
                     />
                   </div>
                   <h3 className="text-xl font-bold mb-2">{member.name}</h3>
@@ -136,7 +193,12 @@ const About: React.FC = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-noir-900 text-white">
+        <section 
+          data-section="cta"
+          className={`py-20 bg-noir-900 text-white transition-all duration-1000 ${
+            isVisible[values.length + teamMembers.length + 2] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}
+        >
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">Nuestros Técnicos Expertos</h2>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
@@ -145,13 +207,13 @@ const About: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
                 to="/gallery" 
-                className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-noir-900 bg-white hover:bg-noir-100 transition-colors"
+                className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-noir-900 bg-white hover:bg-noir-100 transition-colors duration-300"
               >
                 Ver Galería
               </Link>
               <Link 
                 to="/contact" 
-                className="inline-flex items-center justify-center px-8 py-3 border border-white text-base font-medium rounded-md text-white hover:bg-white hover:text-noir-900 transition-colors"
+                className="inline-flex items-center justify-center px-8 py-3 border border-white text-base font-medium rounded-md text-white hover:bg-white hover:text-noir-900 transition-colors duration-300"
               >
                 Agendar Cita
               </Link>
