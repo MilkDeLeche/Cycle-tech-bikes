@@ -97,33 +97,21 @@ const About: React.FC = () => {
             isVisible[0] ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          <div className="absolute inset-0 bg-[url('/images/plazaexodo.jpg')] bg-cover bg-center opacity-50"></div>
-          <div className="relative container mx-auto h-full flex items-center">
-            <div className="max-w-2xl text-white">
-              <h1 className="text-5xl md:text-6xl font-display font-bold mb-6">Nuestra Historia</h1>
-              <p className="text-xl text-white/90">
-                Nacidos durante los desafiantes tiempos del COVID-19, hemos crecido de una pequeña tienda a una próspera comunidad ciclista. Gracias al increíble apoyo de nuestros clientes, hemos construido algo especial: un lugar donde ciclistas de todos los niveles pueden encontrar orientación experta, equipo premium y una comunidad acogedora para compartir su pasión por el ciclismo.
-              </p>
-            </div>
-          </div>
+          <div className="absolute inset-0 bg-[url('/images/plazaexodo.jpg')] bg-cover bg-center"></div>
         </section>
 
-        {/* Mission Statement */}
+        {/* History Section */}
         <section 
-          data-section="mission"
+          data-section="history"
           className={`py-20 bg-white transition-all duration-1000 ${
             isVisible[1] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}
         >
           <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">Nuestra Misión</h2>
+            <div className="max-w-3xl mx-auto">
+              <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 text-center">Nuestra Historia</h1>
               <p className="text-lg text-noir-600 leading-relaxed">
-                En Cycle-Tech, nos dedicamos a empoderar a ciclistas de todos los niveles con servicio experto, 
-                equipo premium y apoyo inquebrantable. Desde el ciclista casual hasta el atleta competitivo, 
-                proporcionamos las herramientas, el conocimiento y la comunidad necesarios para elevar tu experiencia ciclista. 
-                Nuestro compromiso con la excelencia tanto en productos como en servicio asegura que cada ciclista que 
-                cruza nuestras puertas salga listo para alcanzar su próximo hito.
+                Nacidos durante los desafiantes tiempos del COVID-19, hemos crecido de una pequeña tienda a una próspera comunidad ciclista. Gracias al increíble apoyo de nuestros clientes, hemos construido algo especial: un lugar donde ciclistas de todos los niveles pueden encontrar orientación experta, equipo premium y una comunidad acogedora para compartir su pasión por el ciclismo.
               </p>
             </div>
           </div>
