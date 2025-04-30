@@ -10,24 +10,28 @@ interface BikeCardProps {
 
 const BikeCard: React.FC<BikeCardProps> = ({ imageSrc, name, price, category }) => {
   return (
-    <div className="group">
-      <div className="relative overflow-hidden bg-noir-50 aspect-square mb-4">
+    <div className="group relative">
+      <div className="relative overflow-hidden bg-noir-50 aspect-square mb-4 rounded-lg">
         <img 
           src={imageSrc} 
           alt={name} 
           className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-noir-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        <button className="absolute bottom-4 left-4 bg-white text-noir-900 px-5 py-2 text-sm uppercase tracking-wider translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+        <button 
+          className="absolute bottom-4 left-4 bg-white text-noir-900 px-4 py-2 text-xs sm:text-sm uppercase tracking-wider translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 rounded-md hover:bg-noir-100"
+          aria-label={`Ver detalles de ${name}`}
+        >
           Vista Rápida
         </button>
       </div>
       <div className="flex justify-between items-start">
         <div>
-          <h3 className="text-lg font-medium mb-1">{name}</h3>
-          <p className="text-sm text-noir-500">{category}</p>
+          <h3 className="text-base sm:text-lg font-medium mb-1">{name}</h3>
+          <p className="text-xs sm:text-sm text-noir-500">{category}</p>
         </div>
-        <p className="font-medium">{price}</p>
+        <p className="font-medium text-sm sm:text-base">{price}</p>
       </div>
     </div>
   );
@@ -62,25 +66,35 @@ const FeaturedBikes: React.FC = () => {
   ];
 
   return (
-    <section className="section container mx-auto">
-      <div className="flex justify-between items-end mb-12">
-        <div>
-          <h2 className="text-3xl md:text-4xl font-display font-bold">Bicicletas Destacadas</h2>
-          <p className="text-noir-500 mt-2">Hechas a mano con materiales premium</p>
+    <section className="section container mx-auto px-4 sm:px-6">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 sm:mb-12">
+        <div className="mb-4 sm:mb-0">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold">Bicicletas Destacadas</h2>
+          <p className="text-sm sm:text-base text-noir-500 mt-2">Hechas a mano con materiales premium</p>
         </div>
-        <a href="#" className="hidden sm:flex items-center text-sm uppercase tracking-wider hover:text-noir-500">
+        <a 
+          href="#" 
+          className="flex items-center text-sm uppercase tracking-wider hover:text-noir-500 transition-colors duration-300"
+          aria-label="Ver todas las bicicletas"
+        >
           Ver todo <ArrowRight size={16} className="ml-1" />
         </a>
       </div>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
         {bikes.map((bike, index) => (
           <BikeCard key={index} {...bike} />
         ))}
       </div>
       
-      <div className="mt-10 flex justify-center sm:hidden">
-        <a href="#" className="btn-outline">Ver Todos los Productos</a>
+      <div className="mt-8 sm:mt-10 flex justify-center">
+        <a 
+          href="#" 
+          className="inline-flex items-center justify-center px-6 py-2.5 border border-noir-900 text-sm font-medium rounded-md text-noir-900 hover:bg-noir-900 hover:text-white transition-colors duration-300"
+          aria-label="Ver todos los productos"
+        >
+          Ver Todos los Productos
+        </a>
       </div>
     </section>
   );

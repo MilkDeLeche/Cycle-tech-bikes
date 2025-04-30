@@ -9,43 +9,49 @@ const Hero: React.FC = () => {
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // Change image every 5 seconds
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+        setIsTransitioning(false);
+      }, 500);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-noir-900">
+    <div className="relative w-full h-[90vh] min-h-[600px] overflow-hidden bg-noir-900">
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50 transition-opacity duration-1000"
+        className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${
+          isTransitioning ? 'opacity-0' : 'opacity-50'
+        }`}
         style={{ 
-          backgroundImage: `url(${images[currentImageIndex]})`,
-          opacity: 0.5
+          backgroundImage: `url(${images[currentImageIndex]})`
         }}
       ></div>
       
-      <div className="relative container mx-auto flex items-center h-full">
-        <div className="max-w-lg pt-24">
-          <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6 leading-tight">
-            Vive la <br />Diferencia
+      <div className="relative container mx-auto px-4 flex items-center h-full">
+        <div className="max-w-lg pt-16 md:pt-24">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-display font-bold text-white mb-4 md:mb-6 leading-tight">
+            Vive la <br className="hidden sm:block" />Diferencia
           </h1>
-          <p className="text-lg text-white/90 mb-8 max-w-md">
+          <p className="text-base sm:text-lg text-white/90 mb-6 md:mb-8 max-w-md">
             Experimenta la combinación perfecta de rendimiento, estilo y artesanía con nuestra colección exclusiva.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <Link 
               to="/gallery" 
-              className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-noir-900 bg-white hover:bg-noir-100 transition-colors"
+              className="inline-flex items-center justify-center px-6 sm:px-8 py-2.5 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md text-noir-900 bg-white hover:bg-noir-100 transition-colors duration-300"
             >
               Ver Galería
             </Link>
             <Link 
               to="/contact" 
-              className="inline-flex items-center justify-center px-8 py-3 border border-white text-base font-medium rounded-md text-white hover:bg-white hover:text-noir-900 transition-colors"
+              className="inline-flex items-center justify-center px-6 sm:px-8 py-2.5 sm:py-3 border border-white text-sm sm:text-base font-medium rounded-md text-white hover:bg-white hover:text-noir-900 transition-colors duration-300"
             >
               Contactar
             </Link>
@@ -53,16 +59,23 @@ const Hero: React.FC = () => {
         </div>
       </div>
       
-      <div className="absolute bottom-8 left-0 right-0">
-        <div className="container mx-auto flex justify-center">
+      <div className="absolute bottom-6 sm:bottom-8 left-0 right-0">
+        <div className="container mx-auto px-4 flex justify-center">
           <div className="flex space-x-2">
             {images.map((_, index) => (
               <button
                 key={index}
-                className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                  index === currentImageIndex ? 'bg-white' : 'bg-white/30'
+                className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+                  index === currentImageIndex ? 'bg-white scale-110' : 'bg-white/30 hover:bg-white/50'
                 }`}
-                onClick={() => setCurrentImageIndex(index)}
+                onClick={() => {
+                  setIsTransitioning(true);
+                  setTimeout(() => {
+                    setCurrentImageIndex(index);
+                    setIsTransitioning(false);
+                  }, 500);
+                }}
+                aria-label={`Ir a la imagen ${index + 1}`}
               />
             ))}
           </div>

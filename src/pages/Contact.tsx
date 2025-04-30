@@ -4,11 +4,11 @@ import Navigation from '../components/Navigation';
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
-    phone: '',
+    subject: '',
     message: ''
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -20,7 +20,7 @@ const Contact: React.FC = () => {
     e.preventDefault();
     
     // Create WhatsApp message
-    const whatsappMessage = `Hola, mi nombre es ${formData.name}.\n\n${formData.message}\n\nMi número de teléfono es: ${formData.phone}`;
+    const whatsappMessage = `Hola, mi nombre es ${formData.name}.\n\nAsunto: ${formData.subject}\n\n${formData.message}`;
     const encodedMessage = encodeURIComponent(whatsappMessage);
     
     // Open WhatsApp with pre-filled message
@@ -29,7 +29,7 @@ const Contact: React.FC = () => {
     // Reset form
     setFormData({
       name: '',
-      phone: '',
+      subject: '',
       message: ''
     });
   };
@@ -73,8 +73,8 @@ const Contact: React.FC = () => {
                   
                   <div>
                     <h3 className="text-lg font-medium mb-2">Horario de Atención</h3>
-                    <p className="text-noir-600">Lunes a Viernes: 9:00 AM - 7:00 PM</p>
-                    <p className="text-noir-600">Sábado: 10:00 AM - 5:00 PM</p>
+                    <p className="text-noir-600">Lunes a Viernes: 10:00 AM - 7:00 PM</p>
+                    <p className="text-noir-600">Sábado: 10:00 AM - 7:00 PM</p>
                     <p className="text-noir-600">Domingo: Cerrado</p>
                   </div>
                 </div>
@@ -99,16 +99,22 @@ const Contact: React.FC = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-noir-700 mb-1">Teléfono</label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
+                    <label htmlFor="subject" className="block text-sm font-medium text-noir-700 mb-1">Asunto</label>
+                    <select
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-2 border border-noir-300 rounded-md focus:outline-none focus:ring-2 focus:ring-noir-500"
-                    />
+                    >
+                      <option value="">Selecciona un asunto</option>
+                      <option value="Consulta sobre producto">Consulta sobre producto</option>
+                      <option value="Agendar cita">Agendar cita</option>
+                      <option value="Servicio de mantenimiento">Servicio de mantenimiento</option>
+                      <option value="Información sobre talleres">Información sobre talleres</option>
+                      <option value="Otro">Otro</option>
+                    </select>
                   </div>
 
                   <div>
@@ -121,6 +127,7 @@ const Contact: React.FC = () => {
                       required
                       rows={4}
                       className="w-full px-4 py-2 border border-noir-300 rounded-md focus:outline-none focus:ring-2 focus:ring-noir-500"
+                      placeholder="Por favor, proporciona detalles sobre tu consulta..."
                     ></textarea>
                   </div>
 
